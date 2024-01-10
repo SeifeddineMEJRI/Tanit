@@ -6,4 +6,9 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Tanit.Common\Tanit.Common.csproj" />
+      <ProjectReference Include="..\Tanit.Domain\Tanit.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

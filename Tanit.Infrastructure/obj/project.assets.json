@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     "net6.0": {
+      "Tanit.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Tanit.Common": "1.0.0",
+          "Tanit.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Tanit.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tanit.Application.dll": {}
+        }
+      },
+      "Tanit.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Tanit.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tanit.Common.dll": {}
+        }
+      },
       "Tanit.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -15,6 +39,16 @@
     }
   },
   "libraries": {
+    "Tanit.Application/1.0.0": {
+      "type": "project",
+      "path": "../Tanit.Application/Tanit.Application.csproj",
+      "msbuildProject": "../Tanit.Application/Tanit.Application.csproj"
+    },
+    "Tanit.Common/1.0.0": {
+      "type": "project",
+      "path": "../Tanit.Common/Tanit.Common.csproj",
+      "msbuildProject": "../Tanit.Common/Tanit.Common.csproj"
+    },
     "Tanit.Domain/1.0.0": {
       "type": "project",
       "path": "../Tanit.Domain/Tanit.Domain.csproj",
@@ -23,7 +57,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Tanit.Domain >= 1.0.0"
+      "Tanit.Application >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -51,8 +85,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Tanit_Bank\\Tanit.Domain\\Tanit.Domain.csproj": {
-              "projectPath": "C:\\Tanit_Bank\\Tanit.Domain\\Tanit.Domain.csproj"
+            "C:\\Tanit_Bank\\Tanit.Application\\Tanit.Application.csproj": {
+              "projectPath": "C:\\Tanit_Bank\\Tanit.Application\\Tanit.Application.csproj"
             }
           }
         }
