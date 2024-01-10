@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.WebApp", "Tanit.WebApp\Tanit.WebApp.csproj", "{B97078D1-EB35-482E-A6BB-61EE97FCA242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.Domain", "Tanit.Domain\Tanit.Domain.csproj", "{5ECE771B-9415-446C-92DA-C525680711AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.Application", "Tanit.Application\Tanit.Application.csproj", "{10B96199-21A1-47AC-9F65-ACBF26467ABD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.Infrastructure", "Tanit.Infrastructure\Tanit.Infrastructure.csproj", "{D360A60F-008D-407D-99FA-56F0C27E7468}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.Common", "Tanit.Common\Tanit.Common.csproj", "{4C133C99-4D44-4C87-92B4-9C3831D705FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B97078D1-EB35-482E-A6BB-61EE97FCA242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97078D1-EB35-482E-A6BB-61EE97FCA242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97078D1-EB35-482E-A6BB-61EE97FCA242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97078D1-EB35-482E-A6BB-61EE97FCA242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ECE771B-9415-446C-92DA-C525680711AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECE771B-9415-446C-92DA-C525680711AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECE771B-9415-446C-92DA-C525680711AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECE771B-9415-446C-92DA-C525680711AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10B96199-21A1-47AC-9F65-ACBF26467ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10B96199-21A1-47AC-9F65-ACBF26467ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10B96199-21A1-47AC-9F65-ACBF26467ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10B96199-21A1-47AC-9F65-ACBF26467ABD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D360A60F-008D-407D-99FA-56F0C27E7468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D360A60F-008D-407D-99FA-56F0C27E7468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D360A60F-008D-407D-99FA-56F0C27E7468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D360A60F-008D-407D-99FA-56F0C27E7468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C133C99-4D44-4C87-92B4-9C3831D705FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C133C99-4D44-4C87-92B4-9C3831D705FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C133C99-4D44-4C87-92B4-9C3831D705FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C133C99-4D44-4C87-92B4-9C3831D705FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
