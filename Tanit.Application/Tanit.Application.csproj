@@ -10,17 +10,4 @@
       <ProjectReference Include="..\Tanit.Common\Tanit.Common.csproj" />
       <ProjectReference Include="..\Tanit.Domain\Tanit.Domain.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="obj\**" />
-    </ItemGroup>
-
 </Project>
