@@ -1,3 +1,5 @@
+using System;
+
 namespace Tanit.Domain;
 
 public class Client
