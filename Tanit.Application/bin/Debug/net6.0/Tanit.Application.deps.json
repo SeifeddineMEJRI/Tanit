@@ -1,0 +1,47 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Tanit.Application/1.0.0": {
+        "dependencies": {
+          "Tanit.Common": "1.0.0",
+          "Tanit.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Tanit.Application.dll": {}
+        }
+      },
+      "Tanit.Common/1.0.0": {
+        "runtime": {
+          "Tanit.Common.dll": {}
+        }
+      },
+      "Tanit.Domain/1.0.0": {
+        "runtime": {
+          "Tanit.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Tanit.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tanit.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tanit.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

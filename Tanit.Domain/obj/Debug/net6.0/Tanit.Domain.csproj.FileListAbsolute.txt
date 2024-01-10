@@ -1,0 +1,12 @@
+C:\Tanit_Bank\Tanit.Domain\bin\Debug\net6.0\Tanit.Domain.deps.json
+C:\Tanit_Bank\Tanit.Domain\bin\Debug\net6.0\Tanit.Domain.dll
+C:\Tanit_Bank\Tanit.Domain\bin\Debug\net6.0\Tanit.Domain.pdb
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.csproj.AssemblyReference.cache
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.AssemblyInfoInputs.cache
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.AssemblyInfo.cs
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.csproj.CoreCompileInputs.cache
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.dll
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\refint\Tanit.Domain.dll
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\Tanit.Domain.pdb
+C:\Tanit_Bank\Tanit.Domain\obj\Debug\net6.0\ref\Tanit.Domain.dll

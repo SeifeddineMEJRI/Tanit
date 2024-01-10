@@ -1,0 +1,17 @@
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Application.deps.json
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Application.dll
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Application.pdb
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Common.dll
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Domain.dll
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Common.pdb
+C:\Tanit_Bank\Tanit.Application\bin\Debug\net6.0\Tanit.Domain.pdb
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.csproj.AssemblyReference.cache
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.AssemblyInfoInputs.cache
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.AssemblyInfo.cs
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.csproj.CoreCompileInputs.cache
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.csproj.CopyComplete
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.dll
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\refint\Tanit.Application.dll
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\Tanit.Application.pdb
+C:\Tanit_Bank\Tanit.Application\obj\Debug\net6.0\ref\Tanit.Application.dll
