@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Tanit.Domain;
-using Tanit.Infrastructure.Models;
+using Tanit.Domain.Identity.Model;
 
 namespace Tanit.Infrastructure.Context;
 

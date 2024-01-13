@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Tanit.Infrastructure.Models;
+namespace Tanit.Domain.Identity.Model;
 
 public class TanitUser : IdentityUser
 {

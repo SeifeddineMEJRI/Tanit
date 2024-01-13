@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tanit.Infrastructure.Models;
+using Tanit.Domain.Identity.Model;
 
 namespace Tanit.Infrastructure.DbConfig;
 

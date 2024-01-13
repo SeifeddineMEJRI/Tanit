@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -9,5 +9,9 @@
     <ItemGroup>
       <ProjectReference Include="..\Tanit.Common\Tanit.Common.csproj" />
       <ProjectReference Include="..\Tanit.Domain\Tanit.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Security\" />
     </ItemGroup>
 </Project>
