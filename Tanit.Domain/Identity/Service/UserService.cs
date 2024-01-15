@@ -1,10 +1,7 @@
-﻿using Common.Authorization;
-using FluentResults;
+﻿using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Tanit.Domain.Identity.Model;
 using Tanit.Domain.Identity.Request;
-using Tanit.Domain.Identity.Response;
 
 namespace Infrastructure.Services.Identity
 {
@@ -18,8 +15,6 @@ namespace Infrastructure.Services.Identity
             _userManager = userManager;
             _roleManager = roleManager;
         }
-
-       
 
         public async Task<Result> RegisterUserAsync(UserRegistrationRequest request)
         {
@@ -56,8 +51,12 @@ namespace Infrastructure.Services.Identity
 
             if (identityResult.Succeeded)
             {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
+                //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
+                //await _emailSender.SendEmailAsync(message);
                 // Assign to Basic Role
-                await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
+                //await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
                 return Result.Ok().WithSuccess(new Success("User registered successfully."));
             }
             return Result.Fail(GetIdentityResultErrorDescriptions(identityResult));
@@ -83,6 +82,21 @@ namespace Infrastructure.Services.Identity
             return Result.Fail<TanitUser>("User does not exist");
         }
 
+        public async Task<Result> ConfirmUserEmailAsync(string email, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return Result.Fail("User not found.");
+            }
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return Result.Ok();
+            }
+            return Result.Fail(result.Errors.ToString());
+        }
+
         private List<string> GetIdentityResultErrorDescriptions(IdentityResult identityResult)
         {
             var errorDescriptions = new List<string>();
@@ -92,6 +106,5 @@ namespace Infrastructure.Services.Identity
             }
             return errorDescriptions;
         }
-
     }
 }

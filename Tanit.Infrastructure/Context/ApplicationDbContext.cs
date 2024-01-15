@@ -27,6 +27,4 @@ public class ApplicationDbContext : IdentityDbContext<TanitUser, TanitRole, stri
 
         builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
-
-    //public DbSet<Client> Clients => Set<Client>();
 }

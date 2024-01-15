@@ -12,6 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Security\" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
     </ItemGroup>
 </Project>

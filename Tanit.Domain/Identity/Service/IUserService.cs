@@ -9,5 +9,6 @@ namespace Infrastructure.Services.Identity
         Task<Result> RegisterUserAsync(UserRegistrationRequest request);
         Task<IResult<TanitUser>> GetUserByIdAsync(string userId);
         Task<IResult<TanitUser>> GetUserByEmailAsync(string email);
+        Task<Result> ConfirmUserEmailAsync(string email, string token);
     }
 }

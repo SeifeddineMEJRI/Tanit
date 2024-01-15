@@ -1,7 +1,14 @@
+using Infrastructure.Services.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tanit.Application.Identity;
+using Tanit.Application.Identity.Handler;
+using Tanit.Domain.Identity.Model;
 using Tanit.Infrastructure;
+using Tanit.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +16,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddEndpointsApiExplorer()
+    .AddSwaggerGen()
+    .AddDatabase(builder.Configuration)
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UserSubscribeCommandHandler).Assembly))
+    .AddIdentityModule();
 
 var app = builder.Build();
 
