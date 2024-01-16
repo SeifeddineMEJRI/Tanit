@@ -7,13 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tanit.WebApp", "Tanit.WebAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{996252F1-2227-48A0-A5F3-FA3B9232B634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.User.Application", "Tanit.User.Application\Tanit.User.Application.csproj", "{C83F15AB-5C65-4B24-A51D-8DD7836BDEEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tanit.User.Application", "Tanit.User.Application\Tanit.User.Application.csproj", "{C83F15AB-5C65-4B24-A51D-8DD7836BDEEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.User.Common", "Tanit.User.Common\Tanit.User.Common.csproj", "{324463ED-F4E3-4CC0-B4F7-D4CF8AC75EB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tanit.User.Common", "Tanit.User.Common\Tanit.User.Common.csproj", "{324463ED-F4E3-4CC0-B4F7-D4CF8AC75EB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.User.Domain", "Tanit.User.Domain\Tanit.User.Domain.csproj", "{5C7E8A8B-96F6-41D2-B845-A7720C28ECED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tanit.User.Domain", "Tanit.User.Domain\Tanit.User.Domain.csproj", "{5C7E8A8B-96F6-41D2-B845-A7720C28ECED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.User.Infrastructure", "Tanit.User.Infrastructure\Tanit.User.Infrastructure.csproj", "{0A38778E-C305-4C66-92EE-2AE13C1626AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tanit.User.Infrastructure", "Tanit.User.Infrastructure\Tanit.User.Infrastructure.csproj", "{0A38778E-C305-4C66-92EE-2AE13C1626AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{E132077F-FF85-43A8-8319-48481D41446A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tanit.Common", "Tanit.Common\Tanit.Common.csproj", "{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +45,10 @@ Global
 		{0A38778E-C305-4C66-92EE-2AE13C1626AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A38778E-C305-4C66-92EE-2AE13C1626AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A38778E-C305-4C66-92EE-2AE13C1626AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +58,9 @@ Global
 		{324463ED-F4E3-4CC0-B4F7-D4CF8AC75EB0} = {996252F1-2227-48A0-A5F3-FA3B9232B634}
 		{5C7E8A8B-96F6-41D2-B845-A7720C28ECED} = {996252F1-2227-48A0-A5F3-FA3B9232B634}
 		{0A38778E-C305-4C66-92EE-2AE13C1626AC} = {996252F1-2227-48A0-A5F3-FA3B9232B634}
+		{4BCB0F8C-9E6F-498A-B9A5-24AD9EE1DFAA} = {E132077F-FF85-43A8-8319-48481D41446A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D46F0EF-81D9-4952-92FB-A58D60389138}
 	EndGlobalSection
 EndGlobal

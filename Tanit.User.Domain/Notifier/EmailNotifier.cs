@@ -11,12 +11,12 @@ public class EmailNotifier : INotifier
         _fluentEmail = fluentEmail;
     }
 
-    public async Task SendAsync(string subject, string body)
+    public async Task SendAsync(string templateName, object model)
     {
         var email = await _fluentEmail
                     .To("mej.seifeddine@gmail.com", "Seifeddine")
-                    .Subject(subject)
-                    .Body(body)
+                   // .Subject(subject)
+                   // .Body(body)
                     .SendAsync();
     }
 }
