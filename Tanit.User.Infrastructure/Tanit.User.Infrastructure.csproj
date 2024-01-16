@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Tanit.Application\Tanit.User.Application.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="FluentEmail.Liquid" Version="3.0.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.26" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.26">
@@ -23,5 +19,9 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Tanit.User.Domain\Tanit.User.Domain.csproj" />
     </ItemGroup>
 </Project>

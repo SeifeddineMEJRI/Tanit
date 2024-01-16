@@ -7,11 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Tanit.Common\Tanit.User.Common.csproj" />
-      <ProjectReference Include="..\Tanit.Domain\Tanit.User.Domain.csproj" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="MediatR" Version="12.2.0" />
+      <ProjectReference Include="..\Tanit.User.Domain\Tanit.User.Domain.csproj" />
     </ItemGroup>
 </Project>
