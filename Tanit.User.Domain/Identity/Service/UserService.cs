@@ -80,16 +80,7 @@ namespace Tanit.User.Domain.Identity.Service
             var userInDb = await _userManager.FindByEmailAsync(email);
             if (userInDb is not null)
             {
-                try
-                {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(userInDb);
-                    await _notifier.SendAsync("Confirm Email", token);
-                    return Result.Ok(userInDb);
-                }
-                catch (Exception ex)
-                {
-
-                }
+                return Result.Ok(userInDb);
             }
             return Result.Fail<TanitUser>("User does not exist");
         }
