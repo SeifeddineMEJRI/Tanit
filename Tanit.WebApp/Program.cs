@@ -1,14 +1,12 @@
-using Infrastructure.Services.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Tanit.Application.Identity;
-using Tanit.Application.Identity.Handler;
-using Tanit.Domain.Identity.Model;
 using Tanit.Infrastructure;
-using Tanit.Infrastructure.Context;
+using Tanit.User.Application.Identity.Handler;
+using Tanit.User.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

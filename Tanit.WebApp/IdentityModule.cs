@@ -1,7 +1,10 @@
-﻿using Infrastructure.Services.Identity;
-using Microsoft.AspNetCore.Identity;
-using Tanit.Domain.Identity.Model;
-using Tanit.Infrastructure.Context;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Net.Mail;
+using System.Net;
+using Tanit.User.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Service;
+using Tanit.User.Domain.Notifier;
+using Tanit.User.Infrastructure.Context;
 
 namespace Tanit.Application.Identity
 {
@@ -10,6 +13,7 @@ namespace Tanit.Application.Identity
         public static IServiceCollection AddIdentityModule(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>()
+                .AddScoped<INotifier, EmailNotifier>()
            .AddIdentity<TanitUser, TanitRole>(options =>
            {
                options.Password.RequiredLength = 6;
@@ -22,6 +26,19 @@ namespace Tanit.Application.Identity
            })
            .AddEntityFrameworkStores<ApplicationDbContext>()
            .AddDefaultTokenProviders();
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential("mej.seifeddine@gmail.com", "Tanit1308"),
+                Timeout = 20000
+            };
+
+            services.AddFluentEmail("mej.seifeddine@gmail.com")
+                .AddSmtpSender(smtp);
             return services;
         }
     }

@@ -1,9 +1,9 @@
-﻿using Infrastructure.Services.Identity;
-using MediatR;
-using Tanit.Application.Identity.Request;
-using Tanit.Domain.Identity.Model;
+﻿using MediatR;
+using Tanit.User.Application.Identity.Request;
+using Tanit.User.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Service;
 
-namespace Tanit.Application.Identity.Handler
+namespace Tanit.User.Application.Identity.Handler
 {
     public class GetUserByEmailRequestHandler : IRequestHandler<GetUserByEmailRequest, TanitUser>
     {

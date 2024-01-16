@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Tanit.Domain;
-using Tanit.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Model;
 
-namespace Tanit.Infrastructure.Context;
+namespace Tanit.User.Infrastructure.Context;
 
 public class ApplicationDbContext : IdentityDbContext<TanitUser, TanitRole, string, IdentityUserClaim<string>,
     IdentityUserRole<string>, IdentityUserLogin<string>, TanitRoleClaim, IdentityUserToken<string>>

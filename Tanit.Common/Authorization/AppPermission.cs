@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Common.Authorization
+namespace Tanit.User.Common.Authorization
 { 
     public record AppPermission(string Feature, string Action, string Group, string Description, bool IsBasic = false)
     {

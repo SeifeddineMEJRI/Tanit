@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Tanit.Application.Identity.Request
+namespace Tanit.User.Application.Identity.Request
 {
     public class ConfirmUserEmailRequest : IRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace Tanit.Domain.Identity.Response
+﻿namespace Tanit.User.Domain.Identity.Response
 {
     public class RoleClaimResponse
     {

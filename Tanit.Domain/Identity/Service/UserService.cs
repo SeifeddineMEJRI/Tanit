@@ -1,19 +1,21 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Identity;
-using Tanit.Domain.Identity.Model;
-using Tanit.Domain.Identity.Request;
+using Tanit.User.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Request;
+using Tanit.User.Domain.Notifier;
 
-namespace Infrastructure.Services.Identity
+namespace Tanit.User.Domain.Identity.Service
 {
     public class UserService : IUserService
     {
         private readonly UserManager<TanitUser> _userManager;
         private readonly RoleManager<TanitRole> _roleManager;
-
-        public UserService(UserManager<TanitUser> userManager, RoleManager<TanitRole> roleManager)
+        private readonly INotifier _notifier;
+        public UserService(UserManager<TanitUser> userManager, RoleManager<TanitRole> roleManager, INotifier notifier)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _notifier = notifier;
         }
 
         public async Task<Result> RegisterUserAsync(UserRegistrationRequest request)
@@ -52,6 +54,7 @@ namespace Infrastructure.Services.Identity
             if (identityResult.Succeeded)
             {
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                await _notifier.SendAsync("Confirm Email", token);
                 //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
                 //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
                 //await _emailSender.SendEmailAsync(message);
@@ -77,7 +80,16 @@ namespace Infrastructure.Services.Identity
             var userInDb = await _userManager.FindByEmailAsync(email);
             if (userInDb is not null)
             {
-                return Result.Ok(userInDb);
+                try
+                {
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(userInDb);
+                    await _notifier.SendAsync("Confirm Email", token);
+                    return Result.Ok(userInDb);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
             return Result.Fail<TanitUser>("User does not exist");
         }

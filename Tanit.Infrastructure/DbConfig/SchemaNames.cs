@@ -1,4 +1,4 @@
-namespace Tanit.Infrastructure.DbConfig;
+namespace Tanit.User.Infrastructure.DbConfig;
 
 internal static class SchemaNames
 {

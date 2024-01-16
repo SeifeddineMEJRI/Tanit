@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Tanit.Infrastructure.Context;
+using Tanit.User.Infrastructure.Context;
 
-namespace Tanit.Infrastructure;
+namespace Tanit.User.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Tanit.Application.Identity.Command;
-using Tanit.Application.Identity.Request;
+using Tanit.User.Application.Identity.Command;
+using Tanit.User.Application.Identity.Request;
 
 namespace Tanit.WebApp.Controllers;
 
@@ -26,7 +26,7 @@ public class UserController : ControllerBase
         var result = await _mediator.Send(subscribeCommand);
         if (result.IsSuccess)
         {
-            return Ok();
+             return Ok();
         }
         return BadRequest(result.Errors);
     }

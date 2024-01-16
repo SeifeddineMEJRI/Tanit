@@ -1,8 +1,8 @@
 ﻿using FluentResults;
-using Tanit.Domain.Identity.Model;
-using Tanit.Domain.Identity.Request;
+using Tanit.User.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Request;
 
-namespace Infrastructure.Services.Identity
+namespace Tanit.User.Domain.Identity.Service
 {
     public interface IUserService
     {

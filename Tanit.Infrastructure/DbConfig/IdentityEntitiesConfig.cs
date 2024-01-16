@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Tanit.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Model;
 
-namespace Tanit.Infrastructure.DbConfig;
+namespace Tanit.User.Infrastructure.DbConfig;
 
 internal class TanitUserConfig : IEntityTypeConfiguration<TanitUser>
 {

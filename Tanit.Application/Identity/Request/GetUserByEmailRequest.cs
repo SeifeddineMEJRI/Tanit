@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Tanit.Domain.Identity.Model;
+using Tanit.User.Domain.Identity.Model;
 
-namespace Tanit.Application.Identity.Request
+namespace Tanit.User.Application.Identity.Request
 {
     public class GetUserByEmailRequest : IRequest<TanitUser>
     {

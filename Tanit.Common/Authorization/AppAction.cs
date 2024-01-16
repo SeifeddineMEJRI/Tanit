@@ -1,4 +1,4 @@
-﻿namespace Common.Authorization
+﻿namespace Tanit.User.Common.Authorization
 {
     public static class AppAction
     {

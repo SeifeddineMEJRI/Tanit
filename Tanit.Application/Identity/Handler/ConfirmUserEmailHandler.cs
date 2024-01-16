@@ -1,8 +1,8 @@
-﻿using Infrastructure.Services.Identity;
-using MediatR;
-using Tanit.Application.Identity.Request;
+﻿using MediatR;
+using Tanit.User.Application.Identity.Request;
+using Tanit.User.Domain.Identity.Service;
 
-namespace Tanit.Application.Identity.Handler
+namespace Tanit.User.Application.Identity.Handler
 {
 
     public class ConfirmUserEmailHandler : IRequestHandler<ConfirmUserEmailRequest>

@@ -1,4 +1,4 @@
-﻿namespace Tanit.Domain.Identity.Request
+﻿namespace Tanit.User.Domain.Identity.Request
 {
     public class UserRegistrationRequest
     {
