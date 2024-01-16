@@ -9,7 +9,7 @@
         public string Password { get; set; }
         public string ComfirmPassword { get; set; }
         public string PhoneNumber { get; set; }
-        public bool ActivateUser { get; set; }
-        public bool AutoComfirmEmail { get; set; }
+        //public bool ActivateUser { get; set; }
+        //public bool AutoComfirmEmail { get; set; }
     }
 }

@@ -5,6 +5,8 @@ using Tanit.User.Domain.Identity.Model;
 using Tanit.User.Domain.Identity.Service;
 using Tanit.User.Domain.Notifier;
 using Tanit.User.Infrastructure.Context;
+using Tanit.User.Domain.Identity.BusinessRules;
+using Tanit.User.Domain.Identity.Mapping;
 
 namespace Tanit.Application.Identity
 {
@@ -14,18 +16,21 @@ namespace Tanit.Application.Identity
         {
             services.AddScoped<IUserService, UserService>()
                 .AddScoped<INotifier, EmailNotifier>()
-           .AddIdentity<TanitUser, TanitRole>(options =>
-           {
-               options.Password.RequiredLength = 6;
-               options.Password.RequireDigit = false;
-               options.Password.RequireLowercase = false;
-               options.Password.RequireNonAlphanumeric = false;
-               options.Password.RequireUppercase = false;
-               options.User.RequireUniqueEmail = true;
-               options.SignIn.RequireConfirmedEmail = true;
-           })
-           .AddEntityFrameworkStores<ApplicationDbContext>()
-           .AddDefaultTokenProviders();
+                .AddScoped<IUserValidationRule, UserEmailUnicityRule>()
+                .AddScoped<IUserValidationRule, UserNameUnicityRule>()
+                .AddAutoMapper(typeof(TanitUserProfile).Assembly)
+               .AddIdentity<TanitUser, TanitRole>(options =>
+               {
+                   options.Password.RequiredLength = 6;
+                   options.Password.RequireDigit = false;
+                   options.Password.RequireLowercase = false;
+                   options.Password.RequireNonAlphanumeric = false;
+                   options.Password.RequireUppercase = false;
+                   options.User.RequireUniqueEmail = true;
+                   options.SignIn.RequireConfirmedEmail = true;
+               })
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultTokenProviders();
 
             var smtp = new SmtpClient
             {

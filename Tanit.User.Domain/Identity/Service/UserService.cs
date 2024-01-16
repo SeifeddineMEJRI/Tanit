@@ -1,5 +1,7 @@
-﻿using FluentResults;
+﻿using AutoMapper;
+using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using Tanit.User.Domain.Identity.BusinessRules;
 using Tanit.User.Domain.Identity.Model;
 using Tanit.User.Domain.Identity.Request;
 using Tanit.User.Domain.Notifier;
@@ -8,61 +10,50 @@ namespace Tanit.User.Domain.Identity.Service
 {
     public class UserService : IUserService
     {
+        readonly IEnumerable<IUserValidationRule> _userValidationRules;
+        IMapper _mapper;
         private readonly UserManager<TanitUser> _userManager;
         private readonly RoleManager<TanitRole> _roleManager;
         private readonly INotifier _notifier;
-        public UserService(UserManager<TanitUser> userManager, RoleManager<TanitRole> roleManager, INotifier notifier)
+        public UserService(UserManager<TanitUser> userManager, RoleManager<TanitRole> roleManager, INotifier notifier, IEnumerable<IUserValidationRule> userValidationRules, IMapper mapper)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _notifier = notifier;
+            _userValidationRules = userValidationRules;
+            _mapper = mapper;
         }
 
         public async Task<Result> RegisterUserAsync(UserRegistrationRequest request)
         {
-            var userWithSameEmail = await _userManager.FindByEmailAsync(request.Email);
-
-            if (userWithSameEmail is not null)
+            IList<Result> validationResults = new List<Result>();
+            foreach (var rule in _userValidationRules)
             {
-                return Result.Fail("Email already taken.");
+                validationResults.Add(await rule.IsValidAsync(request));
             }
 
-            var userWithSameUsername = await _userManager.FindByNameAsync(request.UserName);
-
-            if (userWithSameUsername is not null)
+            if(validationResults.All(res=> res.IsSuccess))
             {
-                return Result.Fail("Username already taken.");
+                var newUser = _mapper.Map<TanitUser>(request);
+                // Hash and store the Hash password
+                var password = new PasswordHasher<TanitUser>();
+                newUser.PasswordHash = password.HashPassword(newUser, request.Password);
+                var identityResult = await _userManager.CreateAsync(newUser);
+
+                if (identityResult.Succeeded)
+                {
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                    await _notifier.SendAsync("Confirm Email", token);
+                    //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
+                    //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
+                    //await _emailSender.SendEmailAsync(message);
+                    // Assign to Basic Role
+                    //await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
+                    return Result.Ok().WithSuccess(new Success("User registered successfully."));
+                }
+                return Result.Fail(GetIdentityResultErrorDescriptions(identityResult));
             }
-
-            var newUser = new TanitUser
-            {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                Email = request.Email,
-                UserName = request.UserName,
-                PhoneNumber = request.PhoneNumber,
-                IsActive = request.ActivateUser,
-                EmailConfirmed = request.AutoComfirmEmail,
-            };
-
-            // Hash and store the Hash password
-            var password = new PasswordHasher<TanitUser>();
-            newUser.PasswordHash = password.HashPassword(newUser, request.Password);
-
-            var identityResult = await _userManager.CreateAsync(newUser);
-
-            if (identityResult.Succeeded)
-            {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-                await _notifier.SendAsync("Confirm Email", token);
-                //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
-                //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
-                //await _emailSender.SendEmailAsync(message);
-                // Assign to Basic Role
-                //await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
-                return Result.Ok().WithSuccess(new Success("User registered successfully."));
-            }
-            return Result.Fail(GetIdentityResultErrorDescriptions(identityResult));
+            return Result.Fail("");
         }
 
         public async Task<IResult<TanitUser>> GetUserByIdAsync(string userId)
