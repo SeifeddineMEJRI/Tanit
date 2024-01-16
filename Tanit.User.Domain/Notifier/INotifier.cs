@@ -2,6 +2,6 @@
 {
     public interface INotifier
     {
-        Task SendAsync(string subject, string body);
+        Task SendAsync(string templateName, object model);
     }
 }

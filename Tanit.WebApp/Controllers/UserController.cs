@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Tanit.Common.FluentResult;
 using Tanit.User.Application.Identity.Command;
 using Tanit.User.Application.Identity.Request;
 
@@ -9,8 +10,7 @@ namespace Tanit.WebApp.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-
-    IMediator _mediator;
+    private readonly IMediator _mediator;
     private readonly ILogger<UserController> _logger;
 
     public UserController(ILogger<UserController> logger, IMediator mediator)
@@ -24,11 +24,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> SubscribeAsync(UserSubscribeCommand subscribeCommand)
     {
         var result = await _mediator.Send(subscribeCommand);
-        if (result.IsSuccess)
-        {
-             return Ok();
-        }
-        return BadRequest(result.Errors);
+        return result.ToActionResult();
     }
 
     [HttpGet]
@@ -40,7 +36,7 @@ public class UserController : ControllerBase
             Email = email
         };
         var result = await _mediator.Send(query);
-        return Ok(result);
+        return result.ToActionResult();
     }
 
     [HttpGet]
@@ -52,7 +48,7 @@ public class UserController : ControllerBase
             Email = email,
             Token = token
         };
-        await _mediator.Send(query);
-        return Ok();
+        var confirmationEmailResult  = await _mediator.Send(query);
+        return confirmationEmailResult.ToActionResult();
     }
 }

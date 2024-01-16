@@ -18,6 +18,7 @@ namespace Tanit.Application.Identity
                 .AddScoped<INotifier, EmailNotifier>()
                 .AddScoped<IUserValidationRule, UserEmailUnicityRule>()
                 .AddScoped<IUserValidationRule, UserNameUnicityRule>()
+                .AddScoped<IPasswordHasher<TanitUser>, PasswordHasher<TanitUser>>()
                 .AddAutoMapper(typeof(TanitUserProfile).Assembly)
                .AddIdentity<TanitUser, TanitRole>(options =>
                {

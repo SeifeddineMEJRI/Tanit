@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using FluentResults;
 using Microsoft.AspNetCore.Identity;
+using Tanit.Common.FluentResult;
+using Tanit.Common.FluentResult.Success;
+using Tanit.User.Common.Authorization;
 using Tanit.User.Domain.Identity.BusinessRules;
 using Tanit.User.Domain.Identity.Model;
 using Tanit.User.Domain.Identity.Request;
@@ -10,18 +13,19 @@ namespace Tanit.User.Domain.Identity.Service
 {
     public class UserService : IUserService
     {
-        readonly IEnumerable<IUserValidationRule> _userValidationRules;
-        IMapper _mapper;
-        private readonly UserManager<TanitUser> _userManager;
-        private readonly RoleManager<TanitRole> _roleManager;
+        private readonly IEnumerable<IUserValidationRule> _userValidationRules;
+        private readonly IMapper _mapper;
         private readonly INotifier _notifier;
-        public UserService(UserManager<TanitUser> userManager, RoleManager<TanitRole> roleManager, INotifier notifier, IEnumerable<IUserValidationRule> userValidationRules, IMapper mapper)
+        private readonly IPasswordHasher<TanitUser> _passwordHasher;
+        private readonly UserManager<TanitUser> _userManager;
+
+        public UserService(UserManager<TanitUser> userManager, INotifier notifier, IEnumerable<IUserValidationRule> userValidationRules, IMapper mapper, IPasswordHasher<TanitUser> passwordHasher)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _notifier = notifier;
             _userValidationRules = userValidationRules;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<Result> RegisterUserAsync(UserRegistrationRequest request)
@@ -32,28 +36,24 @@ namespace Tanit.User.Domain.Identity.Service
                 validationResults.Add(await rule.IsValidAsync(request));
             }
 
-            if(validationResults.All(res=> res.IsSuccess))
+            if (validationResults.Any(p => p.IsFailed))
             {
-                var newUser = _mapper.Map<TanitUser>(request);
-                // Hash and store the Hash password
-                var password = new PasswordHasher<TanitUser>();
-                newUser.PasswordHash = password.HashPassword(newUser, request.Password);
-                var identityResult = await _userManager.CreateAsync(newUser);
-
-                if (identityResult.Succeeded)
-                {
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-                    await _notifier.SendAsync("Confirm Email", token);
-                    //var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account", new { token, email = user.Email }, Request.Scheme);
-                    //var message = new Message(new string[] { user.Email }, "Confirmation email link", confirmationLink, null);
-                    //await _emailSender.SendEmailAsync(message);
-                    // Assign to Basic Role
-                    //await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
-                    return Result.Ok().WithSuccess(new Success("User registered successfully."));
-                }
-                return Result.Fail(GetIdentityResultErrorDescriptions(identityResult));
+                var errors  = validationResults.Where(p => p.IsFailed).SelectMany(p => p.Errors).ToList();
+                return Result.Fail(new BadRequestError(errors));
             }
-            return Result.Fail("");
+           
+            var newUser = _mapper.Map<TanitUser>(request);
+            newUser.PasswordHash = _passwordHasher.HashPassword(newUser, request.Password);
+                
+            var identityResult = await _userManager.CreateAsync(newUser);
+            if (identityResult.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(newUser, AppRoles.Basic);
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
+                await _notifier.SendAsync("ConfirmEmailTemplate", new { User = newUser, EmailToken = token });
+                return Result.Ok().WithSuccess(new CreatedSuccess<string>(newUser.Id));
+            }
+            return Result.Fail(identityResult.Errors.Select(p => new Error(p.Description)));
         }
 
         public async Task<IResult<TanitUser>> GetUserByIdAsync(string userId)
@@ -63,7 +63,7 @@ namespace Tanit.User.Domain.Identity.Service
             {
                 return Result.Ok(userInDb);
             }
-            return Result.Fail<TanitUser>("User does not exist.");
+            return Result.Fail<TanitUser>(new NotFoundError());
         }
 
         public async Task<IResult<TanitUser>> GetUserByEmailAsync(string email)
@@ -73,7 +73,7 @@ namespace Tanit.User.Domain.Identity.Service
             {
                 return Result.Ok(userInDb);
             }
-            return Result.Fail<TanitUser>("User does not exist");
+            return Result.Fail<TanitUser>(new NotFoundError());
         }
 
         public async Task<Result> ConfirmUserEmailAsync(string email, string token)
@@ -81,24 +81,14 @@ namespace Tanit.User.Domain.Identity.Service
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                return Result.Fail("User not found.");
+                return Result.Fail(new NotFoundError());
             }
             var result = await _userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
                 return Result.Ok();
             }
-            return Result.Fail(result.Errors.ToString());
-        }
-
-        private List<string> GetIdentityResultErrorDescriptions(IdentityResult identityResult)
-        {
-            var errorDescriptions = new List<string>();
-            foreach (var error in identityResult.Errors)
-            {
-                errorDescriptions.Add(error.Description);
-            }
-            return errorDescriptions;
+            return Result.Fail(result.Errors.Select(p => new Error(p.Description)));
         }
     }
 }

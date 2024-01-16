@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using FluentResults;
+using MediatR;
 using Tanit.User.Application.Identity.Request;
 using Tanit.User.Domain.Identity.Model;
 using Tanit.User.Domain.Identity.Service;
 
 namespace Tanit.User.Application.Identity.Handler
 {
-    public class GetUserByEmailRequestHandler : IRequestHandler<GetUserByEmailRequest, TanitUser>
+    public class GetUserByEmailRequestHandler : IRequestHandler<GetUserByEmailRequest, IResult<TanitUser>>
     {
         readonly IUserService _userService;
 
@@ -14,10 +15,9 @@ namespace Tanit.User.Application.Identity.Handler
             _userService = userService;
         }
 
-        public async Task<TanitUser> Handle(GetUserByEmailRequest request, CancellationToken cancellationToken)
+        public async Task<IResult<TanitUser>> Handle(GetUserByEmailRequest request, CancellationToken cancellationToken)
         {
-            var result = await _userService.GetUserByEmailAsync(request.Email);
-            return result.Value;
+            return  await _userService.GetUserByEmailAsync(request.Email);
         }
     }
 }
