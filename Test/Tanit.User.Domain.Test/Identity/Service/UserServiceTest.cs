@@ -13,7 +13,8 @@ public class UserServiceTest
     [SetUp]
     public void Setup()
     {
-        var userManager = Substitute.For<UserManager<TanitUser>>();
+        var userManager = new UserManager<TanitUser>(Substitute.For<IUserStore<TanitUser>>(), null, null, null, null,
+            null, null, null, null);
         var notifier = Substitute.For<INotifier>();
         IEnumerable<IUserValidationRule> userValidationRules = new IUserValidationRule[]{Substitute.For<IUserValidationRule>()};
         var mapper = Substitute.For<IMapper>();
